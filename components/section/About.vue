@@ -29,15 +29,10 @@
       <div class="p-3 border bg-[#0b061a]/40 justify-center backdrop-blur-sm border-white/10 rounded-2xl relative flex items-center group">
         <!-- Remove if u want -->
         <p class="absolute top-4 text-white/20 font-medium p-2">
-              Photo by
+              Find me on
               <a
-                href="https://unsplash.com/@sooprun?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                >Alex Suprun</a
-              >
-              on
-              <a
-                href="https://unsplash.com/photos/a-man-standing-in-front-of-a-purple-wall-1RAZcvtAxkk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-                >Unsplash</a
+                href="https://www.linkedin.com/in/elvin-dwi-hendrawan-3314121b5/" target="_blank"
+                >Linked In</a
               >
             </p>
         <div>

@@ -24,7 +24,7 @@ export const PROFILE = {
     return `${this.firstname} ${this.lastname}`;
   },
   role: "Software Developer",
-  avatar: "/images/profile.jpg",
+  avatar: "/images/pp.png",
 };
 
 export const HERO = {
@@ -73,51 +73,36 @@ export const WORK = {
     "I specialize in crafting user-centered solutions for businesses and individuals. Let’s create something extraordinary together.",
   works: [
     {
-      name: "Cafe Street - Landing Page",
+      name: "New BTN Mobile Banking",
       live_demo: "#",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
-      thumbnails: "cafestreet-landingpage.webp",
+      thumbnails: "btn-mobile.png",
       type: "landing page",
     },
     {
-      name: "FurniLux",
+      name: "Bank BTN Back Office",
       live_demo: "#",
-      description: "Make your home comfortable with best furniture.",
-      thumbnails: "furnilux-landingpage.webp",
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
+      thumbnails: "btn-backoffice.png",
       type: "landing page",
     },
     {
-      name: "Let's Food UI Kit",
+      name: "New BTN Mobile Banking",
       live_demo: "#",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
-      thumbnails: "letsfood-landingpage.webp",
-      type: "Web Design",
+      thumbnails: "btn-mobile.png",
+      type: "landing page",
     },
     {
-      name: "Creative Agency",
-      live_demo: "#",
-      description:
-        "This website is to improve your business as a software house and reach more customers.",
-      thumbnails: "creativeagency-landingpage.webp",
-      type: "Web Company",
-    },
-    {
-      name: "Login Register Design",
+      name: "Bank BTN Back Office",
       live_demo: "#",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
-      thumbnails: "loginregister-design.webp",
-      type: "UI Design",
-    },
-    {
-      name: "IRATOON - Streaming App",
-      live_demo: "#",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
-      thumbnails: "iratoon-mobileapp.webp",
-      type: "Mobile App",
+      thumbnails: "btn-backoffice.png",
+      type: "landing page",
     },
   ],
 };
@@ -125,8 +110,9 @@ export const WORK = {
 export const ABOUT = {
   label: "Let me introduce my self",
   introduce: [
-    `My name is ${PROFILE.fullname}, and I am a passionate ${PROFILE.role}. I specialize in creating seamless and visually appealing user interfaces, combining design and development to enhance user experiences.`,
-    "I love turning ideas into interactive and functional web applications. Excited to collaborate and build amazing digital products together!",
+    `My name is ${PROFILE.fullname}, and I am a passionate ${PROFILE.role}. Primarily focused on Backend development, I have experience in building scalable and reliable systems using Java Spring Boot.`,
+    "While my main expertise lies in backend development, I also have a basic understanding of frontend technologies, allowing me to collaborate effectively across the stack.",
+    "I’m passionate about solving complex problems through clean, efficient code — and I’m always eager to learn new technologies to adapt to project needs and deliver impactful solutions.",
   ],
 };
 
