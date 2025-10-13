@@ -37,30 +37,31 @@ export const HERO = {
 
 export const SERVICE = {
   label: "service",
-  headline: "Custom design solutions for your requirements.",
+  headline: "Reliable backend solutions for your business needs.",
   subline:
-    "I specialize in crafting user-centered solutions for businesses and individuals. Let’s create something extraordinary together.",
+    "I specialize in building secure, scalable, and high-performance backend systems using Java Spring Boot and other stack. " + 
+    "With a focus on clean architecture and efficient data handling, I help turn complex ideas into reliable digital products.",
   services: [
     {
       name: "Web Development",
       icon: "Scroll",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores!",
+        "Creating responsive and interactive web interfaces using modern technologies.",
       thumbnails: "",
     },
     {
-      name: "Mobile Development",
-      icon: "MobileProgramming",
+      name: "API Development",
+      icon: "LinkCircle",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores!",
+        "Designing and building robust RESTful APIs with Spring Boot to ensure seamless communication between services and clients. I focus on scalability, security, and performance optimization.",
       thumbnails:
         "https://cdn.dribbble.com/userupload/36796487/file/original-436c64a72733941273f9fd1f4d994883.jpg?resize=752x&vertical=center",
     },
     {
-      name: "UI/UX Designer",
-      icon: "PenTool2",
+      name: "Database Design & Optimization",
+      icon: "Data",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores!",
+        "Experienced in working with PostgreSQL and other relational databases, from schema design to query optimization for better data performance and reliability.",
       thumbnails: "",
     },
   ],
@@ -68,41 +69,41 @@ export const SERVICE = {
 
 export const WORK = {
   label: "work",
-  headline: "Custom design solutions for your requirements.",
+  headline: "Turning Ideas Into Functional Web Systems.",
   subline:
-    "I specialize in crafting user-centered solutions for businesses and individuals. Let’s create something extraordinary together.",
+    "Combining backend performance with frontend simplicity. I create efficient, user-focused solutions that power businesses and enhance digital experiences.",
   works: [
     {
       name: "New BTN Mobile Banking",
-      live_demo: "#",
+      live_demo: "https://play.google.com/store/apps/details?id=id.co.btn.mobilebanking.android&hl=id&pli=1",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
+        "Developed main functionalities for Mobile Banking such as Transfer On Us, Transfer BIFAST, Auto Debit, and Blast Notification.",
       thumbnails: "btn-mobile.png",
-      type: "landing page",
+      type: "Backend Developer - PT. INFOSYS SOLUSI TERPADU",
     },
     {
       name: "Bank BTN Back Office",
       live_demo: "#",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
+        "Developed and implemented APIs for CRUD operations to optimize data management within the back-office system.",
       thumbnails: "btn-backoffice.png",
-      type: "landing page",
+      type: "Backend Developer - PT. INFOSYS SOLUSI TERPADU",
     },
     {
       name: "New BTN Mobile Banking",
       live_demo: "#",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
+        "Developed main functionalities for Mobile Banking such as Transfer On Us, Transfer BIFAST, Auto Debit, and Blast Notification.",
       thumbnails: "btn-mobile.png",
-      type: "landing page",
+      type: "Backend Developer - PT. INFOSYS SOLUSI TERPADU",
     },
     {
       name: "Bank BTN Back Office",
       live_demo: "#",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit cum distinctio dolores.",
+        "Developed and implemented APIs for CRUD operations to optimize data management within the back-office system.",
       thumbnails: "btn-backoffice.png",
-      type: "landing page",
+      type: "Backend Developer - PT. INFOSYS SOLUSI TERPADU",
     },
   ],
 };
@@ -111,9 +112,9 @@ export const ABOUT = {
   label: "Let me introduce my self",
   introduce: [
     `My name is ${PROFILE.fullname}, and I am a passionate ${PROFILE.role}. Primarily focused on Backend development, I have experience in building scalable and reliable systems using Java Spring Boot.`,
+    "I previously worked for 3 years at PT. Infosys Solusi Terpadu, and I’m currently working at PT. IDStar Cipta Teknologi, where I continue to develop and maintain backend services that power business-critical systems.",
     "While my main expertise lies in backend development, I also have a basic understanding of frontend technologies, allowing me to collaborate effectively across the stack.",
-    "I’m passionate about solving complex problems through clean, efficient code — and I’m always eager to learn new technologies to adapt to project needs and deliver impactful solutions.",
-  ],
+    ],
 };
 
 export const CTA = {
