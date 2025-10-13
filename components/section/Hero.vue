@@ -17,7 +17,7 @@
       {{ HERO.subline }}
     </p>
     <div class="flex gap-4 items-center mt-8">
-      <Button label="View Work" to="#work" />
+      <Button label="Download CV" href="/cv/CV_ELVIN_DH.pdf" download="CV_Elvin_Dwi_Hendrawan.pdf" />
       <Button label="Contact Me" to="#contact" variant="btn-dark" />
     </div>
     </div>

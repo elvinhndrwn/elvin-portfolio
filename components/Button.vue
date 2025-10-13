@@ -1,14 +1,19 @@
 <script setup lang="ts">
 defineProps<{
-  label: string;
-  to: string;
-  variant?: string;
-}>();
+  label: string
+  to?: string
+  href?: string
+  download?: boolean
+  variant?: string
+}>()
 </script>
 
 <template>
-  <NuxtLink
+  <component
+    :is="href ? 'a' : 'NuxtLink'"
     :to="to"
+    :href="href"
+    :download="download"
     class="group relative overflow-hidden inline-flex"
     :class="variant ? 'btn-dark' : 'btn-primary'"
   >
@@ -27,5 +32,5 @@ defineProps<{
         {{ label }}
       </p>
     </div>
-  </NuxtLink>
+  </component>
 </template>
