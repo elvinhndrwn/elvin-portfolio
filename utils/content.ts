@@ -28,7 +28,7 @@ export const PROFILE = {
 };
 
 export const HERO = {
-  badge: "Available for freelance",
+  badge: "Open To Work",
   headline: `Hey, I'm ${PROFILE.lastname}. I'm a ${PROFILE.role}`,
   subline:
     "I'm a backend-focused software developer with over 4 years of experience in building reliable and efficient server-side applications. " +
