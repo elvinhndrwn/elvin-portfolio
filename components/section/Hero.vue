@@ -4,8 +4,8 @@
   <div id="hero" class="container relative py-40">
     <!-- Content -->
     <div class="z-10 relative flex flex-col items-center">
-      <div class="badge flex items-center gap-2">
-        <div class="animate-pulse w-2 h-2 bg-primary rounded-full"></div>
+      <div class="badge flex items-center gap-2 mt-2">
+        <div class="animate-pulse w-2 h-2 bg-green-400/80 rounded-full"></div>
         <p class="text-center">{{ HERO.badge }}</p>
       </div>
       <h1
