@@ -8,7 +8,7 @@ export const NAVLINKS = [
     url: "#about",
   },
   {
-    label: "Works",
+    label: "Projects",
     url: "#work",
   },
   {
@@ -35,7 +35,7 @@ export const HERO = {
   badge: "Open To Work",
   headline: `Hey, I'm ${PROFILE.lastname}. I'm a ${PROFILE.role}`,
   subline:
-    "I'm a backend-focused software developer with over 4 years of experience in building reliable and efficient server-side applications. " +
+    "A Backend-focused software developer with over 4 years of experience in building reliable and efficient server-side applications. " +
     "I specialize in developing RESTful APIs, managing databases, and designing backend architectures for modern web applications.",
 };
 
@@ -46,13 +46,6 @@ export const SERVICE = {
     "I specialize in building secure, scalable, and high-performance backend systems using Java Spring Boot and other stack. " +
     "With a focus on clean architecture and efficient data handling, I help turn complex ideas into reliable digital products.",
   services: [
-    {
-      name: "Web Development",
-      icon: "Scroll",
-      description:
-        "Creating responsive and interactive web interfaces using modern technologies.",
-      thumbnails: "",
-    },
     {
       name: "API Development",
       icon: "LinkCircle",
@@ -68,11 +61,18 @@ export const SERVICE = {
         "Experienced in working with PostgreSQL and other relational databases, from schema design to query optimization for better data performance and reliability.",
       thumbnails: "",
     },
+    {
+      name: "Web Development",
+      icon: "Scroll",
+      description:
+        "Creating responsive and interactive web interfaces using modern technologies.",
+      thumbnails: "",
+    },
   ],
 };
 
 export const WORK = {
-  label: "work",
+  label: "Projects",
   headline: "Turning Ideas Into Functional Web Systems.",
   subline:
     "Combining backend performance with frontend simplicity. I create efficient, user-focused solutions that power businesses and enhance digital experiences.",
@@ -111,7 +111,7 @@ export const ABOUT = {
   label: "Let me introduce my self",
   introduce: [
     `My name is ${PROFILE.fullname}, and I am a passionate ${PROFILE.role}. Primarily focused on Backend development, I have experience in building scalable and reliable systems using Java Spring Boot.`,
-    "I previously worked for 3 years at PT. Infosys Solusi Terpadu, and I’m currently working at PT. IDStar Cipta Teknologi, where I continue to develop and maintain backend services that power business-critical systems.",
+    "I previously worked for 3 years at PT. Infosys Solusi Terpadu and assigned to Bank BTN Projects, and I’m currently working at PT. IDStar Cipta Teknologi, where I continue to develop and maintain backend services at Bank CIMB Niaga.",
     "While my main expertise lies in backend development, I also have a basic understanding of frontend technologies, allowing me to collaborate effectively across the stack.",
   ],
 };
@@ -134,8 +134,8 @@ export const STACKS = {
     { name: "PHP", image: "/images/stack/php.png" },
     { name: "PostgreSQL", image: "/images/stack/postgresql.png" },
     { name: "Docker", image: "/images/stack/docker.png" },
-    { name: "Redis", image: "/images/stack/laravel.png" },
-    { name: "Redis", image: "/images/stack/express.png" },
+    { name: "Laravel", image: "/images/stack/laravel.png" },
+    { name: "Express JS", image: "/images/stack/express.png" },
     { name: "Redis", image: "/images/stack/redis.png" },
   ],
 };

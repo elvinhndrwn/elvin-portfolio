@@ -17,6 +17,6 @@
     <SectionWork />
   </div>
   <!-- Testimonials -->
-  <SectionCta />
   <SectionStacks />
+  <SectionCta />
 </template>

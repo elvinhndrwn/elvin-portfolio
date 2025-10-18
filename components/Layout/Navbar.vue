@@ -68,7 +68,8 @@ function navActive() {
       </div>
       <div>
         <Button
-          label="Contact Me"
+          class="rounded-full hidden lg:block shadow-none"
+          label="Contact Me!"
           href="https://wa.me/6282146120284"
           variant="btn-dark"
           target="_blank"
