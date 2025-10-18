@@ -27,6 +27,10 @@
               <h3 class="text-white text-lg lg:text-xl tracking-wide font-bold ">{{ item.name }}</h3>
               <p class=" font-medium uppercase tracking-wide text-gray-600">{{item.type}}</p>
             </div>
+            <button @click="openInfoModal(item)" class="text-gray-400 hover:text-blue-400 transition">
+              <VsxIcon iconName="InfoCircle" :size="22" type="linear" />
+            </button>
+
            <NuxtLink :to="item.live_demo">
             <VsxIcon class="text-gray-400" iconName="ExportSquare" :size="24"  type="linear" />
            </NuxtLink>
@@ -49,4 +53,39 @@
 
   </section>
  </LayoutScrollSmooth>
+
+ <div v-if="showModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+      <div class="bg-gray-900 rounded-2xl p-6 w-[90%] max-w-md relative shadow-xl">
+        <button @click="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-white">
+          <VsxIcon iconName="CloseCircle" :size="24" type="linear" />
+        </button>
+
+        <h3 class="text-xl font-bold text-white mb-2">{{ selectedItem.name }}</h3>
+        <p class="text-sm text-gray-400 uppercase tracking-wide mb-3">{{ selectedItem.type }}</p>
+        <div class="bg-gradient-to-r w-full h-[1px] from-transparent via-blue-500 to-transparent my-3"></div>
+        <p class="text-gray-300">{{ selectedItem.description }}</p>
+
+        <div class="mt-5 text-right">
+          <NuxtLink :to="selectedItem.live_demo" target="_blank" class="text-blue-400 hover:underline">
+            Lihat Demo →
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const showModal = ref(false)
+const selectedItem = ref({})
+
+const openInfoModal = (item) => {
+  selectedItem.value = item
+  showModal.value = true
+}
+
+const closeModal = () => {
+  showModal.value = false
+}
+</script>

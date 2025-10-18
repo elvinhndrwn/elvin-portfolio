@@ -82,12 +82,7 @@ function navActive() {
         </NuxtLink>
       </div>
      <div>
-      <Button
-        class="rounded-full hidden lg:block shadow-none"
-        label="Connect Me"
-        to="#contact"
-        variant="btn-dark"
-      />
+      <Button label="Contact Me" href="https://wa.me/6282146120284" variant="btn-dark" target="_blank" />
       <button @click="navActive" class="lg:hidden btn-dark px-4 py-2 rounded-full group">
         <img class="group-focus:scale-100 group-hover:scale-110 transition-all" :src="isActive ? '/svg/ic-close.svg' : '/svg/ic-hamburger.svg'" >
       </button>
