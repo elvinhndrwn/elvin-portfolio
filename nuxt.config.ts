@@ -5,6 +5,19 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Elvin Dwi Hendrawan | Software Developer",
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "512x512", // 👉 ukuran besar
+          href: "/images/logo.png",
+        },
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180", // untuk perangkat iPhone/iPad
+          href: "/images/logo.png",
+        },
+      ],
     },
   },
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/image"],
