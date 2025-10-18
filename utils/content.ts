@@ -84,7 +84,7 @@ export const WORK = {
       description:
         "Developed main functionalities for Mobile Banking such as Transfer On Us, Transfer BIFAST, Auto Debit, and Blast Notification.",
       thumbnails: "btn-mobile.png",
-      type: "Backend Developer - PT. INFOSYS SOLUSI TERPADU",
+      type: "PT. INFOSYS SOLUSI TERPADU",
       details: `
         <p><strong>Project Background:</strong> AA mobile banking app designed to help Bank BTN customers easily check balances, make transactions, view promotions, open accounts online, and manage payment or purchase histories.</p>
         <p><strong>Project Objective:</strong> To provide customers with a secure, fast, and convenient digital banking experience.</p>
@@ -97,7 +97,7 @@ export const WORK = {
       description:
         "Developed and implemented APIs for CRUD operations to optimize data management within the back-office system.",
       thumbnails: "btn-backoffice.png",
-      type: "Backend Developer - PT. INFOSYS SOLUSI TERPADU",
+      type: "PT. INFOSYS SOLUSI TERPADU",
       details: `
         <p><strong>Project Background:</strong> A web-based back office app for managing mobile banking operations — including notification blasts, user account control, parameter setup, transaction analytics, and loan approvals.</p>
         <p><strong>Project Objective:</strong> The main goal of this project is to improve operational efficiency and provide centralized control over mobile banking features and user management, ensuring smooth communication between internal systems and the core banking platform.</p>
