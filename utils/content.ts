@@ -15,6 +15,10 @@ export const NAVLINKS = [
     label: "Service",
     url: "/#service",
   },
+  {
+    label: "Stacks",
+    url: "/#stacks",
+  },
 ];
 
 export const PROFILE = {
@@ -115,5 +119,23 @@ export const ABOUT = {
 export const CTA = {
   label: "Let’s Build Something Great Together",
   description:
-    "Need a clean, functional UI? I’m here to help bring your vision to life—simple, responsive, and user-focused.",
+    "Looking for a reliable backend developer? I specialize in building scalable APIs and efficient systems that power seamless digital experiences.",
+};
+
+export const STACKS = {
+  label: "Tech Stacks",
+  headline: "Tools and technologies that I use.",
+  subline:
+    "In my development process, I rely on a set of modern, reliable, and secure technologies that support building efficient and maintainable systems. " +
+    "These are the tools and frameworks I frequently use in delivering high-quality backend solutions.",
+  services: [
+    { name: "Java", image: "/images/stack/java.png" },
+    { name: "Spring Boot", image: "/images/stack/springboot.png" },
+    { name: "PHP", image: "/images/stack/php.png" },
+    { name: "PostgreSQL", image: "/images/stack/postgresql.png" },
+    { name: "Docker", image: "/images/stack/docker.png" },
+    { name: "Redis", image: "/images/stack/laravel.png" },
+    { name: "Redis", image: "/images/stack/express.png" },
+    { name: "Redis", image: "/images/stack/redis.png" },
+  ],
 };

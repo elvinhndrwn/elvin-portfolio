@@ -98,7 +98,7 @@
         v-html="selectedItem.details"
       ></div>
 
-      <div class="mt-5 text-right">
+      <!-- <div class="mt-5 text-right">
         <NuxtLink
           :to="selectedItem.live_demo"
           target="_blank"
@@ -106,7 +106,7 @@
         >
           Lihat Demo →
         </NuxtLink>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
