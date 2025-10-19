@@ -28,7 +28,8 @@
             class="absolute bottom-6 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 inset-x-6 bg-gradient-to-t bg-black/90 backdrop-blur-sm transition-all duration-500 rounded-xl overflow-hidden p-4"
           >
             <div>
-              <div class="flex items-center justify-between">
+              <div class="flex items-start justify-between">
+                <!-- Left: Title and Type -->
                 <div>
                   <h3
                     class="text-white text-lg lg:text-xl tracking-wide font-bold"
@@ -39,22 +40,26 @@
                     {{ item.type }}
                   </p>
                 </div>
-                <button
-                  @click="openInfoModal(item)"
-                  class="text-gray-400 hover:text-blue-400 transition"
-                >
-                  <VsxIcon iconName="InfoCircle" :size="22" type="linear" />
-                </button>
 
-                <NuxtLink :to="item.live_demo">
-                  <VsxIcon
-                    class="text-gray-400"
-                    iconName="ExportSquare"
-                    :size="24"
-                    type="linear"
-                  />
-                </NuxtLink>
+                <!-- Right: Icons -->
+                <div class="flex items-center gap-2">
+                  <button
+                    @click="openInfoModal(item)"
+                    class="text-gray-400 hover:text-blue-400 transition"
+                  >
+                    <VsxIcon iconName="InfoCircle" :size="20" type="linear" />
+                  </button>
+
+                  <NuxtLink
+                    :to="item.live_demo"
+                    target="_blank"
+                    class="text-gray-400 hover:text-blue-400 transition"
+                  >
+                    <VsxIcon iconName="ExportSquare" :size="22" type="linear" />
+                  </NuxtLink>
+                </div>
               </div>
+
               <div
                 class="bg-gradient-to-r w-44 h-[1px] from-transparent via-blue-500 to-transparent my-2"
               ></div>
@@ -75,6 +80,7 @@
   <div
     v-if="showModal"
     class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+    @click.self="closeModal"
   >
     <div
       class="bg-gray-900 rounded-2xl p-6 w-[90%] max-w-md relative shadow-xl"
@@ -98,15 +104,15 @@
         v-html="selectedItem.details"
       ></div>
 
-      <!-- <div class="mt-5 text-right">
+      <div class="mt-5 text-right">
         <NuxtLink
           :to="selectedItem.live_demo"
           target="_blank"
           class="text-blue-400 hover:underline"
         >
-          Lihat Demo →
+          Try it →
         </NuxtLink>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

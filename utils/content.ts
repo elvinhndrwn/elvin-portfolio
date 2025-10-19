@@ -104,6 +104,19 @@ export const WORK = {
         <p><strong>My Role:</strong> As a Backend Developer, I built APIs with JAVA 11 and Spring Boot, for data exchange with the core banking system, handled data validation, and implemented scheduled notification blasts.</p>
       `,
     },
+    {
+      name: "URL Shortener",
+      live_demo: "https://url-shortener.elvinhendrawan.dev/",
+      description:
+        "Create a URL shortener app that converts long URLs into shorter, more readable and shareable links.",
+      thumbnails: "url-short.png",
+      type: "Personal Project",
+      details: `
+          <p><strong>Project Background:</strong> This project demonstrates a backend-focused web app where users can convert long URLs into short, shareable links.</p>
+          <p><strong>Project Objective:</strong> To provide a lightweight and efficient URL shortening service, while showcasing my backend development skills using Express.js and PostgreSQL.</p>
+          <p><strong>Future Improvements:</strong> Adding Redis caching for faster redirects and checking for duplicate URLs to improve efficiency.</p>
+      `,
+    },
   ],
 };
 
