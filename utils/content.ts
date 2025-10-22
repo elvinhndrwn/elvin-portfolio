@@ -105,6 +105,19 @@ export const WORK = {
       `,
     },
     {
+      name: "Webgis - Toll Gate Jawa Bali Indonesia",
+      live_demo: "https://tollgate.elvinhendrawan.dev/",
+      description:
+        "Create a static web app with Express JS and Leaflet to show the location of toll gates in Jawa Bali Indonesia.",
+      thumbnails: "toll-gate.png",
+      type: "Personal Project",
+      details: `
+          <p><strong>Project Background:</strong> This project demonstrates a monolithic web app to show the location of toll gates in Jawa-Bali.</p>
+          <p><strong>Project Objective:</strong> To provide an interactive map of toll gates in Jawa-Bali.</p>
+          <p><strong>Future Improvements:</strong> Adding dynamic upload gson file via UI.</p>
+      `,
+    },
+    {
       name: "URL Shortener",
       live_demo: "https://url-shortener.elvinhendrawan.dev/",
       description:
