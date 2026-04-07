@@ -35,7 +35,7 @@ export const HERO = {
   badge: "Open To Work",
   headline: `Hey, I'm ${PROFILE.lastname}. I'm a ${PROFILE.role}`,
   subline:
-    "A Backend-focused software developer with over 4 years of experience in building reliable and efficient server-side applications. " +
+    "A Backend-focused software developer with over 5 years of experience in building reliable and efficient server-side applications. " +
     "I specialize in developing RESTful APIs, managing databases, and designing backend architectures for modern web applications.",
 };
 
@@ -137,7 +137,10 @@ export const ABOUT = {
   label: "Let me introduce my self",
   introduce: [
     `My name is ${PROFILE.fullname}, and I am a passionate ${PROFILE.role}. Primarily focused on Backend development, I have experience in building scalable and reliable systems using Java Spring Boot.`,
-    "I previously worked for 3 years at PT. Infosys Solusi Terpadu and assigned to Bank BTN Projects, and I’m currently working at PT. IDStar Cipta Teknologi, where I continue to develop and maintain backend services at Bank CIMB Niaga.",
+
+    "Currently at OLX Indonesia, I focus on bug fixing and performance optimization to ensure the high availability and stability of our automotive e-commerce platforms. " +
+    "Previously, I worked for PT IDStar (assigned to Bank CIMB Niaga) and PT Infosys Solusi Terpadu (assigned to Bank BTN), delivering scalable banking solutions.",
+
     "While my main expertise lies in backend development, I also have a basic understanding of frontend technologies, allowing me to collaborate effectively across the stack.",
   ],
 };
@@ -157,10 +160,10 @@ export const STACKS = {
   services: [
     { name: "Java", image: "/images/stack/java.png" },
     { name: "Spring Boot", image: "/images/stack/springboot.png" },
-    { name: "PHP", image: "/images/stack/php.png" },
+    { name: "Rust", image: "/images/stack/rust.png" },
     { name: "PostgreSQL", image: "/images/stack/postgresql.png" },
     { name: "Docker", image: "/images/stack/docker.png" },
-    { name: "Laravel", image: "/images/stack/laravel.png" },
+    { name: "Cloud", image: "/images/stack/cloud.png" },
     { name: "Express JS", image: "/images/stack/express.png" },
     { name: "Redis", image: "/images/stack/redis.png" },
   ],

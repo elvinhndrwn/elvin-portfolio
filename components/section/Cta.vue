@@ -48,7 +48,7 @@
 
         <p class="text-sm text-white/30 text-center mt-8">
           &copy; Copyright
-          <NuxtLink to="#" target="_blank">Elvin Dwi Hendrawan</NuxtLink> 2025
+          <NuxtLink to="#" target="_blank">Elvin Dwi Hendrawan</NuxtLink> 2026
         </p>
 
         <div
