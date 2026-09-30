@@ -19,7 +19,7 @@
       <div class="flex gap-4 items-center mt-8">
         <Button
           label="Download CV"
-          href="/cv/CV_ELVIN_DH.pdf"
+          href="/cv/CV - [2026] ELVIN DWI HENDRAWAN - BACKEND ENGINEER.pdf"
           download="CV_Elvin_Dwi_Hendrawan.pdf"
         />
         <Button
