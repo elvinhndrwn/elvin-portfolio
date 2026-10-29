@@ -172,7 +172,7 @@ export const WORK = {
         },
         {
           label: "My Role",
-          text: "As a Backend Developer, I developed APIs for the registration and employee data workflows, handled validation, and ensured the process stayed secure and auditable.",
+          text: "As a Backend Developer, I developed APIs for the Registration and Employee data workflows, handled validation, and ensured the process stayed secure and auditable.",
         },
       ],
     },
