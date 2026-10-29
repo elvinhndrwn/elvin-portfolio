@@ -1,134 +1,248 @@
+<script setup lang="ts">
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+type WorkItem = {
+  visible: boolean;
+  name: string;
+  live_demo: string;
+  description: string;
+  thumbnails: string;
+  type: string;
+  details: { label: string; text: string }[];
+};
+
+const root = ref<HTMLElement | null>(null);
+const selected = ref<WorkItem | null>(null);
+const { stop, start } = useSmoothScroll();
+let ctx: gsap.Context | null = null;
+
+function openModal(item: WorkItem) {
+  selected.value = item;
+  stop();
+}
+
+function closeModal() {
+  selected.value = null;
+  start();
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key === "Escape") closeModal();
+}
+
+watch(selected, (value) => {
+  if (value) window.addEventListener("keydown", onKeydown);
+  else window.removeEventListener("keydown", onKeydown);
+});
+
+onMounted(() => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ctx = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((img) => {
+      gsap.fromTo(
+        img,
+        { yPercent: -5, scale: 1.08 },
+        {
+          yPercent: 5,
+          scale: 1.08,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    const cards = gsap.utils.toArray<HTMLElement>("[data-work-card]");
+    cards.forEach((card, i) => {
+      const next = cards[i + 1];
+      if (!next) return;
+      gsap.to(card, {
+        scale: 0.96,
+        opacity: 0.75,
+        transformOrigin: "center top",
+        ease: "none",
+        scrollTrigger: {
+          trigger: next,
+          start: "top bottom",
+          end: "top 25%",
+          scrub: true,
+        },
+      });
+    });
+  }, root.value ?? undefined);
+});
+
+onBeforeUnmount(() => {
+  ctx?.revert();
+  window.removeEventListener("keydown", onKeydown);
+});
+</script>
+
 <template>
-  <LayoutScrollSmooth>
-    <section id="work" class="container">
-      <!-- Content -->
-      <p class="badge">{{ WORK.label }}</p>
-      <h2 class="section-title">
-        {{ WORK.headline }}
-      </h2>
-      <p class="paragraph mt-4 max-w-xl">
-        {{ WORK.subline }}
-      </p>
+  <section id="work" ref="root" class="py-24 md:py-32">
+    <div class="container">
+      <LayoutReveal>
+        <p data-reveal class="eyebrow">{{ WORK.label }}</p>
+        <h2 data-reveal class="headline-lg mt-4 max-w-2xl text-balance">
+          {{ WORK.headline }}
+        </h2>
+        <p data-reveal class="subline mt-5 max-w-2xl">
+          {{ WORK.subline }}
+        </p>
+      </LayoutReveal>
 
-      <!-- Works List -->
-      <div class="grid md:grid-cols-2 gap-6 mt-16">
+      <div class="mt-16 space-y-6 md:space-y-10">
         <div
-          class="p-3 border bg-[#0b061a]/40 backdrop-blur-sm border-white/10 rounded-2xl relative flex items-center group"
-          v-for="item in WORK.works"
+          v-for="(item, i) in WORK.visibleWorks"
+          :key="item.name"
+          class="md:sticky"
+          :style="{ top: `${84 + i * 16}px` }"
         >
-          <div class="overflow-hidden aspect-[4/3] rounded-lg">
-            <img
-              class="group-hover:scale-105 transition-all duration-500 w-full h-full object-cover"
-              :src="'/images/work/' + item.thumbnails"
-              :alt="'Thumbnail ' + item.name"
-            />
-          </div>
-
-          <div
-            class="absolute bottom-6 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 inset-x-6 bg-gradient-to-t bg-black/90 backdrop-blur-sm transition-all duration-500 rounded-xl overflow-hidden p-4"
+          <article
+            data-work-card
+            class="overflow-hidden rounded-[2rem] md:rounded-[2.5rem]"
+            :class="i % 2 === 0 ? 'bg-surface text-ink' : 'bg-[#101013] text-white'"
           >
-            <div>
-              <div class="flex items-start justify-between">
-                <!-- Left: Title and Type -->
-                <div>
-                  <h3
-                    class="text-white text-lg lg:text-xl tracking-wide font-bold"
-                  >
-                    {{ item.name }}
-                  </h3>
-                  <p class="font-medium uppercase tracking-wide text-gray-600">
-                    {{ item.type }}
-                  </p>
-                </div>
-
-                <!-- Right: Icons -->
-                <div class="flex items-center gap-2">
-                  <button
-                    @click="openInfoModal(item)"
-                    class="text-gray-400 hover:text-blue-400 transition"
-                  >
-                    <VsxIcon iconName="InfoCircle" :size="20" type="linear" />
-                  </button>
-
-                  <NuxtLink
-                    :to="item.live_demo"
+            <div
+              class="grid items-center gap-6 p-6 md:p-10 lg:grid-cols-2 lg:gap-12 lg:p-14"
+            >
+              <div class="order-2 lg:order-1">
+                <p
+                  class="eyebrow"
+                  :class="{ 'text-[#5aa9ff]': i % 2 === 1 }"
+                >
+                  {{ item.type }}
+                </p>
+                <h3
+                  class="mt-3 text-2xl font-semibold tracking-tight md:text-4xl"
+                >
+                  {{ item.name }}
+                </h3>
+                <p
+                  class="mt-4 text-base leading-relaxed md:text-lg"
+                  :class="i % 2 === 0 ? 'text-muted' : 'text-white/60'"
+                >
+                  {{ item.description }}
+                </p>
+                <div class="mt-8 flex flex-wrap items-center gap-3">
+                  <Button label="Learn more" @click="openModal(item)" />
+                  <Button
+                    v-if="item.live_demo !== '#'"
+                    label="Visit site"
+                    :variant="i % 2 === 0 ? 'secondary' : 'ghost-inverted'"
+                    :href="item.live_demo"
                     target="_blank"
-                    class="text-gray-400 hover:text-blue-400 transition"
-                  >
-                    <VsxIcon iconName="ExportSquare" :size="22" type="linear" />
-                  </NuxtLink>
+                  />
                 </div>
               </div>
 
-              <div
-                class="bg-gradient-to-r w-44 h-[1px] from-transparent via-blue-500 to-transparent my-2"
-              ></div>
-              <p class="paragpraph text-gray-400">
-                {{ item.description }}
-              </p>
+              <div class="order-1 lg:order-2">
+                <div class="overflow-hidden rounded-2xl md:rounded-3xl">
+                  <NuxtImg
+                    data-parallax
+                    :src="`/images/work/${item.thumbnails}`"
+                    :alt="item.name"
+                    width="1200"
+                    format="webp"
+                    loading="lazy"
+                    class="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div
-            class="absolute bottom-0 w-60 h-[1px] z-10 bg-gradient-to-r from-[#0b50e5]/0 via-[#0b50e5] to-[#0b50e5]/0"
-          ></div>
+          </article>
         </div>
       </div>
-    </section>
-  </LayoutScrollSmooth>
-
-  <div
-    v-if="showModal"
-    class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
-    @click.self="closeModal"
-  >
-    <div
-      class="bg-gray-900 rounded-2xl p-6 w-[90%] max-w-md relative shadow-xl"
-    >
-      <button
-        @click="closeModal"
-        class="absolute top-3 right-3 text-gray-400 hover:text-white"
-      >
-        <VsxIcon iconName="CloseCircle" :size="24" type="linear" />
-      </button>
-
-      <h3 class="text-xl font-bold text-white mb-2">{{ selectedItem.name }}</h3>
-      <p class="text-sm text-gray-400 uppercase tracking-wide mb-3">
-        {{ selectedItem.type }}
-      </p>
-      <div
-        class="bg-gradient-to-r w-full h-[1px] from-transparent via-blue-500 to-transparent my-3"
-      ></div>
-      <div
-        class="text-gray-300 space-y-2 leading-relaxed"
-        v-html="selectedItem.details"
-      ></div>
-
-      <div class="mt-5 text-right">
-        <NuxtLink
-          :to="selectedItem.live_demo"
-          target="_blank"
-          class="text-blue-400 hover:underline"
-        >
-          Try it →
-        </NuxtLink>
-      </div>
     </div>
-  </div>
+
+    <Teleport to="body">
+      <Transition name="modal">
+        <div
+          v-if="selected"
+          class="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 backdrop-blur-sm md:items-center md:p-6"
+          @click.self="closeModal"
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            :aria-label="selected.name"
+            data-lenis-prevent
+            class="modal-panel max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-[2rem] bg-white md:rounded-[2rem]"
+          >
+            <div class="relative">
+              <NuxtImg
+                :src="`/images/work/${selected.thumbnails}`"
+                :alt="selected.name"
+                width="1200"
+                format="webp"
+                class="aspect-[16/9] w-full object-cover"
+              />
+              <button
+                class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur transition-colors hover:bg-white"
+                aria-label="Close"
+                @click="closeModal"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 2l10 10M12 2L2 12"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div class="p-7 md:p-10">
+              <p class="eyebrow">{{ selected.type }}</p>
+              <h3 class="mt-2 text-2xl font-semibold tracking-tight text-ink">
+                {{ selected.name }}
+              </h3>
+              <p class="mt-3 leading-relaxed text-muted">
+                {{ selected.description }}
+              </p>
+
+              <div
+                v-for="detail in selected.details"
+                :key="detail.label"
+                class="mt-6"
+              >
+                <h4 class="text-sm font-semibold text-ink">
+                  {{ detail.label }}
+                </h4>
+                <p class="mt-1.5 text-sm leading-relaxed text-muted">
+                  {{ detail.text }}
+                </p>
+              </div>
+
+              <div
+                v-if="selected.live_demo !== '#'"
+                class="mt-8 flex justify-end"
+              >
+                <Button
+                  label="Visit site"
+                  :href="selected.live_demo"
+                  target="_blank"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+  </section>
 </template>
-
-<script setup>
-import { ref } from "vue";
-
-const showModal = ref(false);
-const selectedItem = ref({});
-
-const openInfoModal = (item) => {
-  selectedItem.value = item;
-  showModal.value = true;
-};
-
-const closeModal = () => {
-  showModal.value = false;
-};
-</script>

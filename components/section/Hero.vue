@@ -1,199 +1,99 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import gsap from "gsap";
+
+const root = ref<HTMLElement | null>(null);
+let ctx: gsap.Context | null = null;
+
+onMounted(() => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  ctx = gsap.context(() => {
+    gsap.fromTo(
+      "[data-hero]",
+      { autoAlpha: 0, y: 26 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.12,
+        delay: 0.05,
+      }
+    );
+    gsap.fromTo(
+      "[data-hero-strip]",
+      { autoAlpha: 0, y: 40 },
+      { autoAlpha: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.5 }
+    );
+  }, root.value ?? undefined);
+});
+
+onBeforeUnmount(() => ctx?.revert());
+</script>
 
 <template>
-  <div id="hero" class="container relative py-40">
-    <!-- Content -->
-    <div class="z-10 relative flex flex-col items-center">
-      <div class="badge flex items-center gap-2 mt-2">
-        <div class="animate-pulse w-2 h-2 bg-green-400/80 rounded-full"></div>
-        <p class="text-center">{{ HERO.badge }}</p>
-      </div>
-      <h1
-        class="max-w-4xl mx-auto text-center text-4xl md:text-5xl lg:text-6xl text-white font-bold mt-4 !leading-snug"
+  <section id="hero" ref="root" class="relative overflow-hidden pt-36 md:pt-44">
+    <div class="container text-center">
+      <div
+        data-hero
+        class="inline-flex items-center gap-2 rounded-full border border-black/5 bg-surface px-4 py-1.5 text-[13px] font-medium text-ink/70"
       >
-        {{ HERO.headline }}
+        <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></span>
+        {{ HERO.badge }}
+      </div>
+
+      <h1 data-hero class="headline-xl mx-auto mt-7 max-w-4xl text-balance">
+        Building the backend behind
+        <span
+          class="bg-gradient-to-r from-accent to-[#5aa9ff] bg-clip-text text-transparent"
+        >
+          seamless digital experiences.
+        </span>
       </h1>
-      <p class="paragraph mt-4 text-center max-w-xl mx-auto">
+
+      <p data-hero class="subline mx-auto mt-6 max-w-2xl">
         {{ HERO.subline }}
       </p>
-      <div class="flex gap-4 items-center mt-8">
+
+      <div
+        data-hero
+        class="mt-10 flex flex-wrap items-center justify-center gap-3"
+      >
         <Button
           label="Download CV"
-          href="/cv/CV - [2026] ELVIN DWI HENDRAWAN - BACKEND ENGINEER.pdf"
+          :href="LINKS.cv"
           download="CV_Elvin_Dwi_Hendrawan.pdf"
         />
         <Button
-          label="Contact Me"
-          href="https://wa.me/6282146120284"
-          variant="btn-dark"
+          label="Contact me"
+          variant="secondary"
+          :href="LINKS.whatsapp"
           target="_blank"
         />
       </div>
     </div>
 
-    <!-- Selected Work -->
-    <div class="w-full inline-flex flex-nowrap relative overflow-hidden mt-16">
-      <div
-        class="h-full w-24 bg-gradient-to-r from-dark to-transparent left-0 inset-y-0 absolute z-10"
-      ></div>
-      <div
-        class="h-full w-24 bg-gradient-to-l from-dark to-transparent right-0 inset-y-0 absolute z-10"
-      ></div>
-      <ul
-        class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll hover:animate-pause"
-      >
-        <li v-for="item in WORK.works" class="overflow-hidden group">
-          <img
-            class="h-[300px] rounded-xl group-hover:scale-105 group-hover:opacity-70 transition-all"
-            :src="'/images/work/' + item.thumbnails"
-          />
-        </li>
-
-        <li
-          v-for="item in WORK.works"
-          class="overflow-hidden group"
-          aria-hidden="true"
+    <div data-hero-strip class="relative mt-20 md:mt-28">
+      <div class="marquee-mask overflow-hidden">
+        <ul
+          class="flex w-max animate-marquee gap-5 pr-5 hover:[animation-play-state:paused]"
         >
-          <img
-            class="h-[300px] rounded-xl group-hover:scale-105 group-hover:opacity-70 transition-all"
-            :src="'/images/work/' + item.thumbnails"
-          />
-        </li>
-      </ul>
-    </div>
-
-    <div
-      class="absolute -top-40 right-40 rotate-45 w-14 h-[800px] bg-blue-700 blur-[100px]"
-    ></div>
-    <div class="absolute top-0 left-0 w-screen h-screen index-bg">
-      <div class="h-0">
-        <div class="star"></div>
-        <div
-          class="star"
-          style="top: 80px; left: 800px; animation-delay: 3s"
-        ></div>
-        <div
-          class="star"
-          style="top: 40px; left: 646px; animation-delay: 2s"
-        ></div>
-        <div
-          class="star"
-          style="top: 120px; left: 395px; animation-delay: 4s"
-        ></div>
-        <div
-          class="star"
-          style="top: 160px; left: 765px; animation-delay: 1s"
-        ></div>
-        <div
-          class="star"
-          style="top: 170px; left: 1200px; animation-delay: 2s"
-        ></div>
-        <div
-          class="star"
-          style="top: 200px; left: 1000px; animation-delay: 1s"
-        ></div>
+          <li
+            v-for="(item, i) in [...WORK.visibleWorks, ...WORK.visibleWorks]"
+            :key="i"
+            class="group"
+          >
+            <NuxtImg
+              :src="`/images/work/${item.thumbnails}`"
+              :alt="item.name"
+              width="600"
+              format="webp"
+              loading="lazy"
+              class="h-[180px] w-auto rounded-2xl object-cover shadow-card transition-transform duration-700 ease-out group-hover:scale-[1.03] md:h-[300px] md:rounded-3xl"
+            />
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </section>
 </template>
-<style>
-@-webkit-keyframes star-opacity {
-  0% {
-    opacity: 0;
-  }
-
-  40% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes star-opacity {
-  0% {
-    opacity: 0;
-  }
-
-  40% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes star-pos {
-  0% {
-    transform: scale(0) rotate(0) translate3d(0, 0, 0);
-    -webkit-transform: scale(0) rotate(0) translate3d(0, 0, 0);
-    -moz-transform: scale(0) rotate(0) translate3d(0, 0, 0);
-  }
-
-  100% {
-    transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
-    -webkit-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
-    -moz-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
-  }
-}
-
-@keyframes star-pos {
-  0% {
-    transform: scale(0) rotate(0) translate3d(0, 0, 0);
-    -webkit-transform: scale(0) rotate(0) translate3d(0, 0, 0);
-    -moz-transform: scale(0) rotate(0) translate3d(0, 0, 0);
-  }
-
-  100% {
-    transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
-    -webkit-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
-    -moz-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
-  }
-}
-
-.index-bg .star {
-  display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #fff;
-  top: 100px;
-  left: 400px;
-  position: relative;
-  -webkit-transform-origin: 100% 0;
-  transform-origin: 100% 0;
-  -webkit-animation: star-opacity 5s infinite ease-in,
-    star-pos 5s infinite ease-in;
-  animation: star-opacity 5s infinite ease-in, star-pos 5s infinite ease-in;
-  -webkit-box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  z-index: 2;
-}
-
-.index-bg .star:after {
-  content: "";
-  display: block;
-  top: 0;
-  left: 4px;
-  border: 0 solid #fff;
-  border-width: 0 90px 2px;
-  border-color: transparent transparent transparent rgba(255, 255, 255, 0.3);
-  -webkit-transform: rotate(-45deg) translate3d(1px, 3px, 0);
-  transform: rotate(-45deg) translate3d(1px, 3px, 0);
-  -webkit-box-shadow: 0 0 1px 0 rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 1px 0 rgba(255, 255, 255, 0.1);
-  -webkit-transform-origin: 0% 100%;
-  transform-origin: 0% 100%;
-}
-</style>

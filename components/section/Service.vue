@@ -1,44 +1,46 @@
 <template>
-  <LayoutScrollSmooth>
-    <section id="service" class="container">
-    <!-- Content -->
-    <p class="badge">{{ SERVICE.label }}</p>
-    <h2
-      class="section-title"
+  <section id="expertise" class="container py-24 md:py-32">
+    <LayoutReveal>
+      <p data-reveal class="eyebrow">{{ SERVICE.label }}</p>
+      <h2 data-reveal class="headline-lg mt-4 max-w-2xl text-balance">
+        {{ SERVICE.headline }}
+      </h2>
+      <p data-reveal class="subline mt-5 max-w-2xl">
+        {{ SERVICE.subline }}
+      </p>
+    </LayoutReveal>
+
+    <LayoutReveal
+      class="mt-16 grid gap-5 md:grid-cols-2"
+      :stagger="0.12"
     >
-      {{ SERVICE.headline }}
-    </h2>
-    <p class="paragraph mt-4 max-w-xl">
-      {{ SERVICE.subline }}
-    </p>
-
-    <!-- Services List -->
-    <div class="grid md:grid-cols-3 gap-6 mt-16">
-      <div class="card relative flex items-center p-10" v-for="item in SERVICE.services">
-       <div>
-        <div>
-          <div class="inline-flex p-2 rounded-lg border border-primary shadow-[0px_0px_15px_-3px_rgba(85,_132,_255,_0.5)]">
-              <VsxIcon
-                :iconName="item.icon"
-                :size="24"
-                color="#5584FF"
-                type="linear"
-              />
-            </div>
+      <article
+        v-for="(item, i) in SERVICE.services"
+        :key="item.name"
+        data-reveal
+        class="group rounded-[2rem] bg-surface p-9 transition-all duration-500 hover:-translate-y-1 hover:bg-[#f0f0f2] hover:shadow-card md:p-12"
+        :class="{ 'md:col-span-2': i === 0 }"
+      >
+        <div
+          class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm transition-transform duration-500 group-hover:scale-105"
+        >
+          <VsxIcon
+            :iconName="item.icon"
+            :size="24"
+            color="#0071E3"
+            type="linear"
+          />
         </div>
-       
-          <div class="mt-5">
-            <h4 class="text-xl font-semibold tracking-wide text-white">{{ item.name }}</h4>
-            <p class="text-white/50 mt-2">{{ item.description }}</p>
-          </div>
-       </div>
-
-          <div
-          class="absolute  bottom-0 w-60 h-[1px] z-10 bg-gradient-to-r from-[#0b50e5]/0 via-[#0b50e5] to-[#0b50e5]/0"
-        ></div>
-        <div class="-z-10 absolute  bottom-0 w-40 bg-[#0b50e5] rounded-full blur-2xl h-40 animate-pulse"></div>
-      </div>
-    </div>
+        <h3 class="mt-8 text-xl font-semibold tracking-tight md:text-2xl">
+          {{ item.name }}
+        </h3>
+        <p
+          class="mt-3 leading-relaxed text-muted"
+          :class="{ 'max-w-2xl': i === 0 }"
+        >
+          {{ item.description }}
+        </p>
+      </article>
+    </LayoutReveal>
   </section>
-  </LayoutScrollSmooth>
 </template>

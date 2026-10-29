@@ -1,37 +1,42 @@
 <template>
-  <LayoutScrollSmooth>
-    <section id="stacks" class="container">
-      <!-- Content -->
-      <p class="badge">{{ STACKS.label }}</p>
-      <h2 class="section-title">
-        {{ STACKS.headline }}
-      </h2>
-      <p class="paragraph mt-4 max-w-xl">
-        {{ STACKS.subline }}
-      </p>
+  <section id="stack" class="bg-surface py-24 md:py-32">
+    <div class="container">
+      <LayoutReveal>
+        <p data-reveal class="eyebrow">{{ STACKS.label }}</p>
+        <h2 data-reveal class="headline-lg mt-4 max-w-2xl text-balance">
+          {{ STACKS.headline }}
+        </h2>
+        <p data-reveal class="subline mt-5 max-w-2xl">
+          {{ STACKS.subline }}
+        </p>
+      </LayoutReveal>
 
-      <!-- Stacks List -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 mt-10">
+      <LayoutReveal
+        class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+        :stagger="0.06"
+      >
         <div
           v-for="item in STACKS.services"
           :key="item.name"
-          class="flex flex-col items-center justify-center group"
+          data-reveal
+          class="group flex flex-col items-center gap-5 rounded-3xl bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-card md:p-10"
         >
-          <!-- Logo Wrapper -->
-          <div
-            class="w-28 h-28 md:w-32 md:h-32 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300"
+          <NuxtImg
+            :src="item.image"
+            :alt="item.name"
+            width="96"
+            height="96"
+            format="webp"
+            loading="lazy"
+            class="h-12 w-12 object-contain opacity-70 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 md:h-14 md:w-14"
+          />
+          <p
+            class="text-sm font-medium text-muted transition-colors duration-500 group-hover:text-ink"
           >
-            <img
-              :src="item.image"
-              :alt="item.name"
-              class="h-14 w-auto md:h-16 grayscale hover:grayscale-0 transition-all duration-300"
-            />
-          </div>
-
-          <!-- Optional text -->
-          <p class="mt-3 text-white/70 text-sm font-medium">{{ item.name }}</p>
+            {{ item.name }}
+          </p>
         </div>
-      </div>
-    </section>
-  </LayoutScrollSmooth>
+      </LayoutReveal>
+    </div>
+  </section>
 </template>

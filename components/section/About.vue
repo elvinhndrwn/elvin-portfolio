@@ -1,73 +1,79 @@
 <template>
-  <LayoutScrollSmooth>
-    <section id="about" class="container">
-      <div class="grid items-center grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Content -->
-        <div>
-          <p class="badge">{{ ABOUT.label }}</p>
-          <h1 class="section-title">
-            {{ PROFILE.fullname }}
-          </h1>
+  <section id="about" class="container py-24 md:py-32">
+    <LayoutReveal>
+      <p data-reveal class="eyebrow">{{ ABOUT.label }}</p>
+      <h2 data-reveal class="headline-lg mt-4 max-w-2xl text-balance">
+        {{ ABOUT.headline }}
+      </h2>
+    </LayoutReveal>
 
-          <p class="paragraph mt-4" v-for="intro in ABOUT.introduce">
-            {{ intro }}
-          </p>
-
-          <!-- Tombol LinkedIn dan GitHub -->
-          <div class="mt-8 flex items-center gap-4 flex-wrap">
-            <!-- LinkedIn Button -->
-            <a
-              href="https://www.linkedin.com/in/elvin-dwi-hendrawan-3314121b5/"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0A66C2] text-white hover:opacity-90 transition"
-            >
-              <img src="/images/linkedin.svg" alt="LinkedIn" class="w-5 h-5" />
-              <span>LinkedIn</span>
-            </a>
-
-            <!-- GitHub Button -->
-            <a
-              href="https://github.com/elvinhndrwn"
-              target="_blank"
-              class="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition"
-            >
-              <img src="/images/github.svg" alt="GitHub" class="w-5 h-5" />
-              <span>GitHub</span>
-            </a>
-          </div>
+    <div class="mt-16 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <LayoutReveal>
+        <div data-reveal class="overflow-hidden rounded-[2rem] bg-surface">
+          <NuxtImg
+            :src="PROFILE.avatar"
+            :alt="`${PROFILE.name} - ${PROFILE.role}`"
+            width="1200"
+            height="900"
+            format="webp"
+            loading="lazy"
+            class="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+          />
         </div>
+      </LayoutReveal>
 
-        <!-- Image -->
+      <LayoutReveal :stagger="0.12">
+        <p data-reveal class="text-lg leading-relaxed text-ink">
+          {{ ABOUT.introduce[0] }}
+        </p>
+        <p data-reveal class="mt-5 text-base leading-relaxed text-muted">
+          {{ ABOUT.introduce[1] }}
+        </p>
+        <p data-reveal class="mt-5 text-base leading-relaxed text-muted">
+          {{ ABOUT.introduce[2] }}
+        </p>
+
+        <div data-reveal class="mt-8 flex flex-wrap gap-3">
+          <Button
+            variant="secondary"
+            :href="LINKS.linkedin"
+            target="_blank"
+          >
+            <img
+              src="/images/linkedin.svg"
+              alt=""
+              class="h-4 w-4"
+              aria-hidden="true"
+            />
+            LinkedIn
+          </Button>
+          <Button variant="secondary" :href="LINKS.github" target="_blank">
+            <img
+              src="/images/github.svg"
+              alt=""
+              class="h-4 w-4"
+              aria-hidden="true"
+            />
+            GitHub
+          </Button>
+        </div>
+      </LayoutReveal>
+    </div>
+
+    <LayoutReveal class="mt-20" :stagger="0.08">
+      <dl class="grid grid-cols-2 gap-8 md:grid-cols-4">
         <div
-          class="p-3 border bg-[#0b061a]/40 justify-center backdrop-blur-sm border-white/10 rounded-2xl relative flex items-center group"
+          v-for="stat in STATS"
+          :key="stat.label"
+          data-reveal
+          class="md:border-l md:border-hairline md:pl-8 [&:nth-child(1)]:border-l-0 [&:nth-child(1)]:pl-0"
         >
-          <div class="relative">
-            <!-- <p class="absolute top-4 left-4 text-white/20 font-medium p-2">
-              Find me on <span class="text-white/50">LinkedIn</span>
-            </p> -->
-
-            <a
-              href="https://www.linkedin.com/in/elvin-dwi-hendrawan-3314121b5/"
-              target="_blank"
-              class="block"
-            >
-              <img
-                class="rounded-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
-                :src="PROFILE.avatar"
-                :alt="`${PROFILE.fullname} - ${PROFILE.role}`"
-              />
-            </a>
-          </div>
-
-          <div
-            class="absolute bottom-0 w-60 h-[1px] z-10 bg-gradient-to-r from-[#0b50e5]/0 via-[#0b50e5] to-[#0b50e5]/0"
-          ></div>
-
-          <div
-            class="-z-10 absolute bottom-4 w-96 bg-[#0b50e5] rounded-full blur-2xl h-40 animate-pulse"
-          ></div>
+          <dd class="text-4xl font-semibold tracking-tight text-ink md:text-5xl">
+            {{ stat.value }}
+          </dd>
+          <dt class="mt-2 text-sm text-muted">{{ stat.label }}</dt>
         </div>
-      </div>
-    </section>
-  </LayoutScrollSmooth>
+      </dl>
+    </LayoutReveal>
+  </section>
 </template>

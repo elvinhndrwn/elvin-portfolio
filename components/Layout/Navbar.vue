@@ -1,89 +1,146 @@
 <script setup lang="ts">
-const isActive = ref(false);
+const isOpen = ref(false);
+const scrolled = ref(false);
+const { scrollTo, stop, start } = useSmoothScroll();
 
-function navActive() {
-  isActive.value = !isActive.value;
+function toggleMenu() {
+  isOpen.value = !isOpen.value;
+  isOpen.value ? stop() : start();
 }
+
+function goTo(hash: string) {
+  if (isOpen.value) {
+    isOpen.value = false;
+    start();
+  }
+  scrollTo(hash, { offset: -64 });
+}
+
+function onScroll() {
+  scrolled.value = window.scrollY > 8;
+}
+
+onMounted(() => {
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", onScroll);
+});
 </script>
 
 <template>
   <header
-    class="max-w-[1480px] px-4 mx-auto fixed inset-x-0 top-0 mt-4 lg:mt-10 z-50"
+    class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-500"
+    :class="
+      scrolled || isOpen
+        ? 'border-black/5 bg-white/80 backdrop-blur-xl'
+        : 'border-transparent bg-white/0'
+    "
   >
-    <div class="flex items-center justify-between">
-      <img
-        src="/images/logo.png"
-        alt="My Logo"
-        class="h-[clamp(60px,10vw,140px)] w-auto object-contain transition-transform duration-300 hover:scale-105"
-      />
-
-      <div
-        :class="
-          isActive
-            ? 'opacity-100 translate-y-1 lg:opacity-100 lg:pointer-events-auto'
-            : 'opacity-0 pointer-events-none lg:pointer-events-auto lg:opacity-100'
-        "
-        class="absolute top-16 inset-x-4 lg:inset-0 lg:relative overflow-hidden flex flex-col lg:flex-row rounded-3xl gap-8 items-center lg:rounded-full px-7 py-8 lg:py-3 border border-white/10 bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-md transition-all duration-300"
+    <nav class="container flex h-14 items-center justify-between">
+      <a
+        href="#hero"
+        aria-label="Back to top"
+        class="flex items-center"
+        @click.prevent="goTo('#hero')"
       >
-        <div
-          class="w-full h-4 bg-blue-300/60 blur-lg absolute top-0 inset-x-0 rounded-full group-hover:h-1/2 transition-all duration-500"
-        ></div>
+        <span class="text-lg font-semibold tracking-tight text-ink">EDH</span>
+      </a>
 
-        <NuxtLink
-          class="text-white group text-xl lg:text-base"
-          v-for="link in NAVLINKS"
-          :to="link.url"
-        >
-          <div class="relative overflow-hidden">
-            <p
-              class="group-hover:-translate-y-7 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-            >
-              {{ link.label }}
-            </p>
-            <p
-              class="absolute top-7 left-0 group-hover:top-0 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-            >
-              {{ link.label }}
-            </p>
-          </div>
-        </NuxtLink>
-        <!-- Connect Me -->
-        <NuxtLink
-          class="lg:hidden text-white group text-xl lg:text-base"
-          to="#contact"
-        >
-          <div class="relative overflow-hidden">
-            <p
-              class="group-hover:-translate-y-7 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-            >
-              Contact Me
-            </p>
-            <p
-              class="absolute top-7 left-0 group-hover:top-0 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-            >
-              Contact Me
-            </p>
-          </div>
-        </NuxtLink>
-      </div>
-      <div>
+      <ul class="hidden items-center gap-9 md:flex">
+        <li v-for="link in NAVLINKS" :key="link.url">
+          <a
+            :href="link.url"
+            class="text-[13px] font-medium text-ink/70 transition-colors duration-300 hover:text-ink"
+            @click.prevent="goTo(link.url)"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      </ul>
+
+      <div class="flex items-center gap-3">
         <Button
-          class="rounded-full hidden lg:block shadow-none"
-          label="Contact Me"
-          href="https://wa.me/6282146120284"
-          variant="btn-dark"
+          class="hidden md:inline-flex"
+          size="sm"
+          label="Contact"
+          :href="LINKS.whatsapp"
           target="_blank"
         />
         <button
-          @click="navActive"
-          class="lg:hidden btn-dark px-4 py-2 rounded-full group"
+          class="flex h-9 w-9 items-center justify-center rounded-full text-ink transition-colors hover:bg-black/5 md:hidden"
+          :aria-expanded="isOpen"
+          aria-label="Toggle menu"
+          @click="toggleMenu"
         >
-          <img
-            class="group-focus:scale-100 group-hover:scale-110 transition-all"
-            :src="isActive ? '/svg/ic-close.svg' : '/svg/ic-hamburger.svg'"
-          />
+          <svg
+            v-if="!isOpen"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M1 4h16M1 9h16M1 14h16"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          <svg
+            v-else
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 3l12 12M15 3L3 15"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
         </button>
       </div>
-    </div>
+    </nav>
+
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="-translate-y-2 opacity-0"
+      enter-to-class="translate-y-0 opacity-100"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="translate-y-0 opacity-100"
+      leave-to-class="-translate-y-2 opacity-0"
+    >
+      <div
+        v-if="isOpen"
+        class="border-t border-black/5 bg-white/95 backdrop-blur-xl md:hidden"
+      >
+        <ul class="container flex flex-col py-4">
+          <li v-for="link in NAVLINKS" :key="link.url">
+            <a
+              :href="link.url"
+              class="block py-3 text-2xl font-semibold tracking-tight text-ink"
+              @click.prevent="goTo(link.url)"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+          <li class="mt-4 mb-2">
+            <Button
+              class="w-full"
+              label="Contact"
+              :href="LINKS.whatsapp"
+              target="_blank"
+            />
+          </li>
+        </ul>
+      </div>
+    </Transition>
   </header>
 </template>

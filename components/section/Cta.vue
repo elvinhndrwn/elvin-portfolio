@@ -1,63 +1,30 @@
-<script setup></script>
-
 <template>
-  <LayoutScrollSmooth>
-    <section class="max-w-5xl mx-auto px-4 lg:px-0">
+  <section id="contact" class="container py-24 md:py-32">
+    <LayoutReveal>
       <div
-        class="mesh-gradient flex items-center flex-col rounded-3xl border bg-[#0b061a] border-white/10 p-10 relative"
+        data-reveal
+        class="relative overflow-hidden rounded-[2.5rem] bg-[#0a0a0c] px-6 py-20 text-center md:px-16 md:py-28"
       >
-        <div class="flex flex-col items-center">
-          <h2 class="text-center !max-w-xl section-title">{{ CTA.label }}</h2>
-          <p class="paragraph max-w-xl text-center mt-8">
-            {{ CTA.description }}
-          </p>
+        <div
+          class="pointer-events-none absolute -top-48 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full bg-accent/25 blur-[120px]"
+        ></div>
 
+        <h2
+          class="headline-lg relative mx-auto max-w-2xl text-balance text-white"
+        >
+          {{ CTA.label }}
+        </h2>
+        <p class="relative mx-auto mt-6 max-w-xl text-lg text-white/60">
+          {{ CTA.description }}
+        </p>
+        <div class="relative mt-10 flex justify-center">
           <Button
-            class="mt-10"
-            label="Start Collaboration"
-            href="https://wa.me/6282146120284"
-            variant="btn-primary"
+            label="Start a collaboration"
+            :href="LINKS.whatsapp"
             target="_blank"
           />
-
-          <div
-            class="my-8 w-4/5 h-[1px] bg-gradient-to-r from-white/0 via-white/20 to-white/0"
-          ></div>
-
-          <div class="flex items-center gap-4 lg:gap-10">
-            <NuxtLink
-              class="text-white/60 group text-sm lg:text-base"
-              v-for="link in NAVLINKS"
-              :to="link.url"
-            >
-              <div class="relative overflow-hidden">
-                <p
-                  class="group-hover:-translate-y-7 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-                >
-                  {{ link.label }}
-                </p>
-                <p
-                  class="absolute top-7 left-0 group-hover:top-0 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]"
-                >
-                  {{ link.label }}
-                </p>
-              </div>
-            </NuxtLink>
-          </div>
         </div>
-
-        <p class="text-sm text-white/30 text-center mt-8">
-          &copy; Copyright
-          <NuxtLink to="#" target="_blank">Elvin Dwi Hendrawan</NuxtLink> 2026
-        </p>
-
-        <div
-          class="absolute bottom-0 w-60 h-[1px] z-10 bg-gradient-to-r from-[#0b50e5]/0 via-[#0b50e5] to-[#0b50e5]/0"
-        ></div>
-        <div
-          class="-z-10 absolute bottom-4 w-96 bg-[#0b50e5] rounded-full blur-2xl h-40 animate-pulse"
-        ></div>
       </div>
-    </section>
-  </LayoutScrollSmooth>
+    </LayoutReveal>
+  </section>
 </template>

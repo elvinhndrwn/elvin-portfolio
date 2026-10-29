@@ -4,17 +4,21 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      htmlAttrs: { lang: "en" },
       title: "Elvin Dwi Hendrawan | Software Developer",
+      meta: [
+        { name: "theme-color", content: "#ffffff" },
+        { name: "color-scheme", content: "light" },
+      ],
       link: [
         {
           rel: "icon",
-          type: "image/png",
-          sizes: "512x512", // 👉 ukuran besar
-          href: "/images/logo.png",
+          type: "image/svg+xml",
+          href: "/favicon.svg",
         },
         {
           rel: "apple-touch-icon",
-          sizes: "180x180", // untuk perangkat iPhone/iPad
+          sizes: "180x180",
           href: "/images/logo.png",
         },
       ],
@@ -23,7 +27,7 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts", "@nuxt/image"],
   googleFonts: {
     families: {
-      Poppins: [300, 400, 500, 600, 700],
+      Inter: [300, 400, 500, 600, 700],
     },
     display: "swap",
   },
