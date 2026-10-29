@@ -84,6 +84,7 @@ onBeforeUnmount(() => ctx?.revert());
             class="group"
           >
             <NuxtImg
+              v-if="item.thumbnails"
               :src="`/images/work/${item.thumbnails}`"
               :alt="item.name"
               width="600"
@@ -91,6 +92,21 @@ onBeforeUnmount(() => ctx?.revert());
               loading="lazy"
               class="h-[180px] w-auto rounded-2xl object-cover shadow-card transition-transform duration-700 ease-out group-hover:scale-[1.03] md:h-[300px] md:rounded-3xl"
             />
+            <div
+              v-else
+              class="flex h-[180px] w-[240px] flex-col justify-end rounded-2xl bg-[radial-gradient(circle_at_top_left,#2c3550,#0f1117_70%)] p-5 shadow-card transition-transform duration-700 ease-out group-hover:scale-[1.03] md:h-[300px] md:w-[400px] md:rounded-3xl md:p-7"
+            >
+              <span
+                class="text-[10px] font-medium uppercase tracking-[0.22em] text-white/40 md:text-[11px]"
+              >
+                Preview coming soon
+              </span>
+              <span
+                class="mt-2 line-clamp-2 text-sm font-semibold leading-snug text-white/80 md:text-lg"
+              >
+                {{ item.name }}
+              </span>
+            </div>
           </li>
         </ul>
       </div>

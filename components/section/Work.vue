@@ -147,6 +147,7 @@ onBeforeUnmount(() => {
               <div class="order-1 lg:order-2">
                 <div class="overflow-hidden rounded-2xl md:rounded-3xl">
                   <NuxtImg
+                    v-if="item.thumbnails"
                     data-parallax
                     :src="`/images/work/${item.thumbnails}`"
                     :alt="item.name"
@@ -155,6 +156,16 @@ onBeforeUnmount(() => {
                     loading="lazy"
                     class="aspect-[4/3] w-full object-cover"
                   />
+                  <div
+                    v-else
+                    class="flex aspect-[4/3] w-full items-center justify-center bg-[radial-gradient(circle_at_top_left,#2c3550,#0f1117_70%)]"
+                  >
+                    <span
+                      class="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white/50"
+                    >
+                      Preview coming soon
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,12 +190,23 @@ onBeforeUnmount(() => {
           >
             <div class="relative">
               <NuxtImg
+                v-if="selected.thumbnails"
                 :src="`/images/work/${selected.thumbnails}`"
                 :alt="selected.name"
                 width="1200"
                 format="webp"
                 class="aspect-[16/9] w-full object-cover"
               />
+              <div
+                v-else
+                class="flex aspect-[16/9] w-full items-center justify-center bg-[radial-gradient(circle_at_top_left,#2c3550,#0f1117_70%)]"
+              >
+                <span
+                  class="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white/50"
+                >
+                  Preview coming soon
+                </span>
+              </div>
               <button
                 class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur transition-colors hover:bg-white"
                 aria-label="Close"

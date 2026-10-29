@@ -132,6 +132,52 @@ export const WORK = {
     },
     {
       visible: true,
+      name: "QAPM - Quality Assurance Performance Monitoring",
+      live_demo: "#",
+      description:
+        "A quality assurance performance monitoring platform for Bank CIMB Niaga to track, measure, and evaluate QA performance across teams.",
+      thumbnails: "",
+      type: "PT IDstar Cipta Teknologi",
+      details: [
+        {
+          label: "Project Background",
+          text: "An internal platform for Bank CIMB Niaga that centralizes quality assurance performance data, helping teams monitor assessment results, scoring, and performance trends in one place.",
+        },
+        {
+          label: "Project Objective",
+          text: "To provide QA and business teams with a single source of performance insights so gaps can be identified faster and service quality can be improved.",
+        },
+        {
+          label: "My Role",
+          text: "As a Backend Developer, I built APIs with Java and Spring Boot, handled data processing and validation, and integrated the platform with internal CIMB Niaga services.",
+        },
+      ],
+    },
+    {
+      visible: true,
+      name: "HRIS Payroll - AMK Group",
+      live_demo: "#",
+      description:
+        "An HRIS platform for AMK Group covering employee data management and payroll registration (PKS) with Bank CIMB Niaga.",
+      thumbnails: "",
+      type: "PT IDstar Cipta Teknologi",
+      details: [
+        {
+          label: "Project Background",
+          text: "Built for AMK Group to manage employee data and register company payroll through a PKS (Perjanjian Kerja Sama) with Bank CIMB Niaga, covering employee records, payroll details, and the registration workflow.",
+        },
+        {
+          label: "Project Objective",
+          text: "To digitalize and streamline the payroll registration process, reducing manual paperwork and making it easier for partner companies to register their employees.",
+        },
+        {
+          label: "My Role",
+          text: "As a Backend Developer, I developed APIs for the registration and employee data workflows, handled validation, and ensured the process stayed secure and auditable.",
+        },
+      ],
+    },
+    {
+      visible: false,
       name: "Webgis - Toll Gate Jawa Bali Indonesia",
       live_demo: "https://tollgate.elvinhendrawan.dev/",
       description:
