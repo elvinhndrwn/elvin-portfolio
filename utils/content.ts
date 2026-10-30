@@ -132,7 +132,7 @@ export const WORK = {
     },
     {
       visible: true,
-      name: "QAPM - Quality Assurance Performance Monitoring",
+      name: "QAPM - Quality Assurance Performance Monitor",
       live_demo: "#",
       description:
         "A quality assurance performance monitoring platform for Bank CIMB Niaga to track, measure, and evaluate QA performance across teams.",
@@ -155,16 +155,16 @@ export const WORK = {
     },
     {
       visible: true,
-      name: "HRIS Payroll - AMK Group",
+      name: "HRIS Payroll - OCTO @Work",
       live_demo: "#",
       description:
-        "An HRIS platform for AMK Group covering employee data management and payroll registration (PKS) with Bank CIMB Niaga.",
+        "An HRIS platform for CIMB Niaga covering employee data management and payroll registration (PKS) with Bank CIMB Niaga.",
       thumbnails: "",
-      type: "PT IDstar Cipta Teknologi",
+      type: "AMK Group",
       details: [
         {
           label: "Project Background",
-          text: "Built for AMK Group to manage employee data and register company payroll through a PKS (Perjanjian Kerja Sama) with Bank CIMB Niaga, covering employee records, payroll details, and the registration workflow.",
+          text: "Built for CIMB Niaga to manage employee data and register company payroll through a PKS (Perjanjian Kerja Sama) with Bank CIMB Niaga, covering employee records, payroll details, and the registration workflow.",
         },
         {
           label: "Project Objective",
@@ -172,7 +172,7 @@ export const WORK = {
         },
         {
           label: "My Role",
-          text: "As a Backend Developer, I developed APIs for the Registration and Employee data workflows, handled validation, and ensured the process stayed secure and auditable.",
+          text: "As a Full-Stack Developer, I developed and maintained frontend interfaces and backend APIs for Registration and Employee data workflows, implemented data validation, and ensured secure and auditable processes.",
         },
       ],
     },
